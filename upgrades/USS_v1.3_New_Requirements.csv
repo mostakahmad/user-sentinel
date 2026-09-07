@@ -1,0 +1,17 @@
+id,title,prefix,old_priority,new_priority,strategy,edition,phase,release_gate
+UAM-CAM-001,Webcam/camera capture disabled by default,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-CAM-002,Optional authorized webcam snapshot capture,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-CAM-003,Associate webcam snapshots with identity and context,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-CAM-004,Webcam capture requires dual approval and step-up auth,UAM-CAM,MUST,SHOULD,SURPASS,Investigate,5,Investigate GA
+UAM-CAM-005,Webcam evidence separate retention and reveal permissions,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-CAM-006,Fail privacy-safe when camera permission revoked,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-CAM-007,Publish webcam capability by OS in compatibility matrix,UAM-CAM,MUST,SHOULD,SURPASS,Investigate,5,Investigate GA
+UAM-CAM-008,Employee transparency notice for webcam policies,UAM-CAM,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+UAM-TIME-017,Detect and classify break time from configurable idle thresholds,UAM-TIME,MUST,MUST,ADAPT,Visibility,1,Visibility GA
+UAM-TIME-018,"Attendance and work-hours summaries per employee, team and day",UAM-TIME,MUST,MUST,ADAPT,Visibility,1,Visibility GA
+UAM-NET-015,Alert on after-hours or off-network/unfamiliar-network logins,UAM-NET,MUST,SHOULD,ADAPT,IRM Protect,3,IRM Protect GA
+DASH-021,HR/payroll-oriented attendance export packs,DASH,MUST,SHOULD,ADAPT,Workforce,2,Workforce GA
+DASH-022,Manager team overview with individual drill-down to authorized views,DASH,MUST,MUST,ADAPT,Visibility,1,Visibility GA
+UAM-SCR-021,Manager-authorized live screen view with controls,UAM-SCR,MUST,SHOULD,ADAPT,Investigate,5,Investigate GA
+PRIV-031,Audit who viewed whose monitoring data or evidence,PRIV,MUST,MUST,SURPASS,Visibility,0,Visibility GA
+PROD-026,Productivity score per employee and team with versioned rules,PROD,MUST,SHOULD,ADAPT,Workforce,2,Workforce GA

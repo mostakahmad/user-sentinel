@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<title>Behavioral Visibility Platform — ব্যবহারকারীভিত্তিক সিস্টেম বর্ণনা v3</title>
+<style>
+  @font-face {
+    font-family: 'NotoSansBengali';
+    src: url('file:///usr/share/fonts/truetype/noto/NotoSansBengali-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'NotoSansBengali';
+    src: url('file:///usr/share/fonts/truetype/noto/NotoSansBengali-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  :root {
+    --ink: #1a1f2e;
+    --muted: #4b5568;
+    --line: #d7dde8;
+    --accent: #0f5f56;
+    --soft: #f3f6f8;
+    --card: #eef7f5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: 'NotoSansBengali', 'Noto Sans Bengali', sans-serif;
+    font-size: 12.2pt;
+    line-height: 1.62;
+    background: #fff;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 16mm 17mm 18mm;
+  }
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 265mm;
+    border: 1px solid var(--line);
+    padding: 26mm 16mm;
+    background: linear-gradient(180deg, #f7fbfa 0%, #ffffff 48%);
+  }
+  .cover h1 { font-size: 26pt; line-height: 1.25; margin: 0 0 10px; color: var(--accent); }
+  .cover .subtitle { font-size: 15pt; font-weight: 700; margin-bottom: 14px; }
+  .cover .lead { font-size: 12pt; color: var(--muted); max-width: 155mm; }
+  .meta-box { border-top: 2px solid var(--accent); padding-top: 14px; margin-top: 36px; }
+  .meta-box p { margin: 4px 0; color: var(--muted); }
+  .meta-box strong { color: var(--ink); }
+  h2 {
+    font-size: 15.5pt; color: var(--accent); border-bottom: 2px solid var(--line);
+    padding-bottom: 5px; margin: 0 0 12px; page-break-after: avoid;
+  }
+  h3 { font-size: 12.5pt; margin: 16px 0 7px; page-break-after: avoid; }
+  p { margin: 0 0 9px; }
+  ul { margin: 0 0 10px; padding-left: 18px; }
+  li { margin-bottom: 3px; }
+  .outcome {
+    background: var(--card); border-left: 4px solid var(--accent);
+    padding: 9px 11px; margin: 8px 0 14px; page-break-inside: avoid;
+  }
+  .outcome b { color: var(--accent); }
+  .idea {
+    background: var(--soft); border: 1px solid var(--line);
+    padding: 11px 12px; margin: 10px 0 14px; page-break-inside: avoid;
+  }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 10.5pt; }
+  th, td { border: 1px solid var(--line); padding: 7px 8px; vertical-align: top; text-align: left; }
+  th { background: #e8f2f0; }
+  .section { page-break-before: always; }
+  .section.first { page-break-before: auto; }
+  .small { font-size: 10pt; color: var(--muted); }
+  .chip {
+    display: inline-block; background: #e8f2f0; color: var(--accent);
+    border-radius: 999px; padding: 2px 9px; font-size: 9.5pt; font-weight: 700; margin: 0 4px 6px 0;
+  }
+  .ok { color: #166534; font-weight: 700; }
+  @page {
+    size: A4; margin: 13mm 13mm 15mm;
+    @bottom-center {
+      content: "Behavioral Visibility · Story Description v3 · Prepared by Mostak Ahmad · পৃষ্ঠা " counter(page);
+      font-family: 'NotoSansBengali', sans-serif; font-size: 8pt; color: #64748b;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div>
+    <div class="chip">সংস্করণ ৩.০</div>
+    <div class="chip">সেপ্টেম্বর ২০২৬</div>
+    <div class="chip">Requirement Catalog ৬০৩</div>
+    <h1>Behavioral Visibility Platform</h1>
+    <div class="subtitle">ব্যবহারকারীভিত্তিক সিস্টেম বর্ণনা (Story-Based) — সম্পূর্ণ উন্নীত সংস্করণ</div>
+    <p class="lead">
+      কোন ব্যবহারকারী কী করতে পারবে এবং সিস্টেম বাস্তবে কীভাবে কাজ করবে — তার সহজ বর্ণনা।
+      এই সংস্করণে বাজারের প্রচলিত employee monitoring (Veriato-শ্রেণি) চেকলিস্টের <b>সব ফিচার</b> অন্তর্ভুক্ত,
+      সাথে privacy-first ডিফল্ট, explainable ঝুঁকি, legal hold, edition প্যাকেজ এবং AI governance।
+    </p>
+    <div class="idea">
+      <b>এই ডকুমেন্ট কাদের জন্য:</b> ব্যবস্থাপনা, HR, IT, Security, Legal, Compliance ও সাধারণ stakeholder —
+      যারা technical SRS না পড়েও পুরো সিস্টেম বুঝতে চান।
+    </div>
+  </div>
+  <div class="meta-box">
+    <p><strong>Prepared by:</strong> Mostak Ahmad</p>
+    <p><strong>Baseline:</strong> Master Requirement v1.3 · Catalog ৬০৩ · Prototype v3</p>
+    <p><strong>পরিবর্তন (v2 → v3):</strong> Webcam pack, attendance/break স্পষ্টীকরণ, live view নিয়ন্ত্রণ,
+      who-viewed audit, HR export, off-network alert, productivity score — সব গল্পে যুক্ত।</p>
+    <p class="small">নোট: RBAC, UEBA, DLP, SIEM ইত্যাদি প্রতিষ্ঠিত technical term ইংরেজিতে রাখা হয়েছে।</p>
+  </div>
+</section>
+
+<section class="section first page">
+  <h2>১. সিস্টেমটি আসলে কী</h2>
+  <p>
+    এটি শুধু “কর্মচারী নজরদারি” টুল নয়। এটি Behavioral Visibility + Workforce Intelligence +
+    Insider Risk + Adaptive DLP + Digital Investigation + Privacy Governance প্ল্যাটফর্ম।
+  </p>
+  <div class="idea">
+    <b>মূল প্রতিশ্রুতি:</b> Metadata আগে · Focused evidence পরে · AI সহায়ক (বিচারক নয়) ·
+    Manager aggregates পায় · Investigator purpose-bound evidence পায়।
+  </div>
+  <table>
+    <tr><th>কাজ</th><th>সহজ অর্থ</th></tr>
+    <tr><td>Observe</td><td>কে কী করছে — activity visibility</td></tr>
+    <tr><td>Understand</td><td>Normal বনাম abnormal আচরণ</td></tr>
+    <tr><td>Protect</td><td>সংবেদনশীল তথ্য সুরক্ষা</td></tr>
+    <tr><td>Predict</td><td>ঝুঁকি আগে শনাক্ত</td></tr>
+    <tr><td>Prevent</td><td>Warn / Justify / Block / Escalate</td></tr>
+    <tr><td>Investigate</td><td>Evidence timeline ও legal hold</td></tr>
+    <tr><td>Improve</td><td>Workload ও প্রক্রিয়া উন্নতি</td></tr>
+  </table>
+  <h3>যা ইচ্ছাকৃতভাবে ডিফল্ট নয়</h3>
+  <ul>
+    <li>সবসময়-অন screenshot / keystroke / live view / webcam</li>
+    <li>Idle = অলস কর্মী</li>
+    <li>কালো-বাক্স স্কোর দিয়ে দোষী সাব্যস্ত</li>
+    <li>ব্যক্তিগত/পারিবারিক ডিভাইসে গোপন নজরদারি</li>
+  </ul>
+</section>
+
+<section class="section page">
+  <h2>২. বাজার-সমকক্ষ ফিচার কভারেজ (৮ মডিউল)</h2>
+  <p>নিচের তালিকা প্রচলিত monitoring টুলের চেকলিস্ট অনুযায়ী — <span class="ok">সব অন্তর্ভুক্ত</span>।</p>
+  <table>
+    <tr><th>মডিউল</th><th>কী আছে</th><th>মন্তব্য</th></tr>
+    <tr><td>১. Activity &amp; Time</td><td>Login/logout, active/idle, অ্যাপ/ওয়েব সময়, attendance, break</td><td>Visibility</td></tr>
+    <tr><td>২. Screen &amp; Input</td><td>পর্যায়ক্রমিক screenshot, live view, keystroke, <b>webcam</b></td><td>Investigate · ডিফল্ট বন্ধ</td></tr>
+    <tr><td>৩. Productivity</td><td>Productive/neutral/unproductive, score, trend, idle ratio</td><td>Workforce</td></tr>
+    <tr><td>৪. Comms &amp; Files</td><td>Email/chat metadata, file/USB/print; content elevated</td><td>Investigate+</td></tr>
+    <tr><td>৫. Alerts &amp; Risk</td><td>Keyword, বড় ট্রান্সফার, after-hours/off-network, dept rules</td><td>IRM Protect</td></tr>
+    <tr><td>৬. Reporting</td><td>Manager dashboard, drill-down, CSV/PDF, search</td><td>+ HR attendance export</td></tr>
+    <tr><td>৭. Admin &amp; Access</td><td>RBAC/ABAC, group policy, কে কার ডেটা দেখেছে audit</td><td>Visibility</td></tr>
+    <tr><td>৮. Deployment</td><td>Windows/Mac agent, cloud/on-prem, remote/offline</td><td>+ Linux/ChromeOS</td></tr>
+  </table>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> Veriato-শ্রেণির সব ক্ষমতা আছে; তবু intrusive অংশগুলো অনুমোদন ও মেয়াদ ছাড়া চালু হয় না।</div>
+</section>
+
+<section class="section page">
+  <h2>৩. Edition — কীভাবে কিনবেন/চালু করবেন</h2>
+  <table>
+    <tr><th>Edition</th><th>কী পাবেন</th></tr>
+    <tr><td>Visibility</td><td>Metadata UAM, attendance/break, privacy default, audit</td></tr>
+    <tr><td>Workforce</td><td>Productivity score, trend, HR attendance export</td></tr>
+    <tr><td>IRM Protect</td><td>Risk ledger, sequence, adaptive DLP, off-network alerts</td></tr>
+    <tr><td>Investigate</td><td>Case, screenshot/keystroke, live view, <b>Webcam Pack</b>, legal hold</td></tr>
+    <tr><td>Connect</td><td>M365/SIEM/HR, Mac/Linux/ChromeOS</td></tr>
+    <tr><td>AI Copilot</td><td>Cited investigation + shadow AI governance</td></tr>
+    <tr><td>Sovereign</td><td>On-prem/hybrid, residency</td></tr>
+  </table>
+  <p class="small">ঐচ্ছিক SKU: <b>Webcam Evidence Pack</b> — Investigate-এর সাথে; Visibility-এ বান্ডিল নয়।</p>
+</section>
+
+<section class="section page">
+  <h2>৪. Adaptive Observation (স্তর ০–৪)</h2>
+  <table>
+    <tr><th>স্তর</th><th>নাম</th><th>উদাহরণ</th></tr>
+    <tr><td>০</td><td>Excluded</td><td>শুধু agent স্বাস্থ্য</td></tr>
+    <tr><td>১</td><td>Metadata (ডিফল্ট)</td><td>অ্যাপ/ওয়েব/সময়/ফাইল মেটা</td></tr>
+    <tr><td>২</td><td>Enriched</td><td>Classification + cloud context</td></tr>
+    <tr><td>৩</td><td>Focused Evidence</td><td>Screenshot / keystroke / webcam</td></tr>
+    <tr><td>৪</td><td>Preventive</td><td>Warn / Block / Restrict</td></tr>
+  </table>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> স্তর ৩–৪ চালু করতে purpose, মালিক, মেয়াদ, dual approval লাগে; মেয়াদ শেষে Level ১-এ ফেরে।</div>
+</section>
+
+<section class="section page">
+  <h2>৫. Activity, Time ও Attendance Stories</h2>
+  <h3>কর্মচারী দৈনন্দিন কাজ</h3>
+  <ul>
+    <li>Login/logout, active/idle, schedule context</li>
+    <li>অ্যাপ ও ওয়েবসাইট অনুযায়ী সময়</li>
+    <li><b>Break time</b> — কনফিগারযোগ্য mouse/keyboard idle threshold দিয়ে আলাদা শ্রেণি</li>
+    <li><b>Attendance / work-hours</b> — employee, team ও দিন অনুযায়ী সারাংশ</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> উপস্থিতি ও কাজের সময় বোঝা যায়; idle = অলস সিদ্ধান্ত হয় না; payroll আলাদা নিয়মে।</div>
+
+  <h3>Department Manager</h3>
+  <ul>
+    <li>টিম overview + individual drill-down (অনুমোদিত মেট্রিক্স)</li>
+    <li>কাঁচা screenshot/keystroke/webcam ডিফল্টে দেখা যায় না</li>
+  </ul>
+
+  <h3>HR</h3>
+  <ul>
+    <li>Engagement, overtime, burnout signal</li>
+    <li><b>HR/payroll-oriented attendance export</b> (CSV/PDF) — কাঁচা evidence ছাড়া</li>
+  </ul>
+</section>
+
+<section class="section page">
+  <h2>৬. Screen, Keystroke, Live View ও Webcam</h2>
+  <h3>Screenshot</h3>
+  <ul>
+    <li>পর্যায়ক্রমিক/interval (যেমন ৫–১০ মিনিট) — policy দিয়ে</li>
+    <li>Activity/keyword/risk-triggered ও focused capture</li>
+    <li>Continuous mode আছে, কিন্তু সাধারণ workforce ডিফল্ট নয়</li>
+  </ul>
+
+  <h3>Live Screen View</h3>
+  <ul>
+    <li>অনুমোদিত manager/security role-এর জন্য</li>
+    <li>Session start/stop audit; silent always-on streaming ডিফল্ট নয়</li>
+    <li>ঐচ্ছিক employee notice mode</li>
+  </ul>
+
+  <h3>Keystroke</h3>
+  <ul>
+    <li>ডিফল্টে বন্ধ</li>
+    <li>Focused / keyword-trigger মোড; আলাদা retention</li>
+  </ul>
+
+  <h3>Webcam / Camera Snapshot (v3 নতুন সম্পূর্ণ মডিউল)</h3>
+  <ul>
+    <li>ডিফল্টে সম্পূর্ণ বন্ধ</li>
+    <li>চালু: dual approval + step-up auth + purpose + expiry</li>
+    <li>প্রতিটি snapshot-এ user/device/time/policy/purpose লিংক</li>
+    <li>আলাদা retention ও reveal permission</li>
+    <li>ক্যামেরা permission না থাকলে coverage gap দেখায় — মিথ্যা evidence নয়</li>
+    <li>OS capability matrix-এ Windows/macOS optional; Linux/ChromeOS সাধারণত নয়</li>
+    <li>Employee Transparency-এ ক্যামেরা category দেখা যায় (চালু থাকলে)</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> বাজার-সমকক্ষ webcam ক্ষমতা আছে; গোপন ২৪/৭ ক্যামেরা নজরদারি ডিফল্ট হবে না।</div>
+</section>
+
+<section class="section page">
+  <h2>৭. Productivity Analytics</h2>
+  <ul>
+    <li>অ্যাপ/সাইট: productive / neutral / unproductive (দল অনুযায়ী)</li>
+    <li><b>Productivity score</b> employee ও team — versioned rules; employment guilt নয়</li>
+    <li>Daily/weekly/monthly trend dashboard</li>
+    <li>Idle vs active ratio — performance শাস্তি হিসেবে নয়</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> Manager/HR workflow ও workload বোঝে; surveillance স্কোর দিয়ে শাস্তি দেয় না।</div>
+</section>
+
+<section class="section page">
+  <h2>৮. Communication, File, USB, Print</h2>
+  <ul>
+    <li>Email/chat <b>metadata</b> (গণনা, দিক, attachment info)</li>
+    <li>মেসেজ/ইমেইল <b>content</b> শুধু elevated policy-তে</li>
+    <li>File open/upload/download, USB transfer, print log</li>
+    <li>File lineage: মূল → zip → cloud</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> তথ্য কোথায় গেল তার যাত্রা দেখা যায়; content logging সবসময়-অন নয়।</div>
+</section>
+
+<section class="section page">
+  <h2>৯. Alerts, Risk ও Adaptive Protection</h2>
+  <ul>
+    <li>Keyword alerts (resign, confidential, প্রতিযোগী নাম…)</li>
+    <li>বড়/অস্বাভাবিক ডেটা মুভমেন্ট ও sequence detection</li>
+    <li><b>After-hours</b> ও <b>off-network / unfamiliar network</b> login alerts</li>
+    <li>Department/role অনুযায়ী rule</li>
+    <li>Explainable Risk Ledger — স্কোর কেন বাড়ল</li>
+    <li>Policy simulation আগে, enforce পরে</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> আলাদা ইভেন্ট নয় — বোধগম্য ঝুঁকির গল্প + সমানুপাতিক response।</div>
+</section>
+
+<section class="section page">
+  <h2>১০. Investigation, Legal Hold, Privacy ও Audit</h2>
+  <h3>Investigator</h3>
+  <ul>
+    <li>Case, timeline, evidence, session replay, export</li>
+  </ul>
+  <h3>Legal</h3>
+  <ul>
+    <li>Legal Hold → purge থামে</li>
+    <li>Chain of custody: hash, manifest, কে দেখেছে/export করেছে</li>
+  </ul>
+  <h3>Privacy &amp; Auditor</h3>
+  <ul>
+    <li>Do Not Record (ব্যাংকিং/স্বাস্থ্য ইত্যাদি)</li>
+    <li><b>কে কার monitoring data / screenshot / keystroke / webcam দেখেছে</b> — immutable audit</li>
+    <li>Jurisdiction pack (BD / EU / US)</li>
+    <li>Employee Transparency Center</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> Monitor করা মানুষেরও জবাবদিহি আছে; privacy ছাড়া সর্বত্র নজরদারি ডিফল্ট নয়।</div>
+</section>
+
+<section class="section page">
+  <h2>১১. Admin, Deployment ও Coverage Honesty</h2>
+  <ul>
+    <li>RBAC + ABAC; admin / manager / HR / security আলাদা দৃশ্য</li>
+    <li>Employee বা group অনুযায়ী আলাদা monitoring policy</li>
+    <li>Windows agent (মূল GA); Mac/Linux/ChromeOS/Android — capability matrix অনুযায়ী</li>
+    <li>Cloud dashboard ও on-prem/hybrid (Sovereign)</li>
+    <li>Remote/VPN/offline queue</li>
+    <li>প্রতিটি ডিভাইসে coverage % ও OS badge — মিথ্যা পূর্ণতা নয়</li>
+  </ul>
+</section>
+
+<section class="section page">
+  <h2>১২. AI Governance ও Copilot</h2>
+  <ul>
+    <li>Sanctioned vs shadow AI catalog</li>
+    <li>Public GenAI-তে সংবেদনশীল তথ্য → warn/block</li>
+    <li>Investigation Copilot: cited evidence; inference আলাদা লেবেল</li>
+    <li>Cross-tenant training ডিফল্ট বন্ধ</li>
+  </ul>
+  <div class="outcome"><b>বাস্তব ফলাফল:</b> AI সহায়ক — বিচারক নয়।</div>
+</section>
+
+<section class="section page">
+  <h2>১৩. Role → Outcome সারাংশ</h2>
+  <table>
+    <tr><th>Role</th><th>মূল ফলাফল</th></tr>
+    <tr><td>Super / Company Admin</td><td>Tenant, edition, policy কাঠামো</td></tr>
+    <tr><td>IT Admin</td><td>Agent fleet + সৎ coverage</td></tr>
+    <tr><td>Manager / HR</td><td>Workforce/attendance insight — কাঁচা evidence ছাড়া</td></tr>
+    <tr><td>SOC / IRM / DLP</td><td>Alert, risk ledger, adaptive control</td></tr>
+    <tr><td>Investigator / Legal</td><td>Case, live/webcam (অনুমোদিত), legal hold</td></tr>
+    <tr><td>Privacy / Auditor</td><td>সীমা, viewer audit, transparency</td></tr>
+    <tr><td>Executive</td><td>সংগঠন-স্তরের সারাংশ</td></tr>
+    <tr><td>Employee</td><td>কী monitor হয় তা জানা ও acknowledge</td></tr>
+  </table>
+</section>
+
+<section class="section page">
+  <h2>১৪. চূড়ান্ত বিবৃতি</h2>
+  <p>
+    এই প্ল্যাটফর্ম বাজারের প্রচলিত monitoring চেকলিস্টের <b>সমস্ত মূল ফিচার</b> সমর্থন করে —
+    activity/time, screen/input (screenshot, live view, keystroke, webcam), productivity,
+    communication/files, alerts, reporting, admin ও deployment —
+    এবং তার ওপরে যোগ করে explainable risk, adaptive DLP, legal hold, edition packaging ও AI governance।
+  </p>
+  <div class="idea">
+    <b>তিনটি মনে রাখার কথা:</b><br>
+    ১) সব ক্ষমতা আছে ≠ সব ক্ষমতা সবসময় চালু।<br>
+    ২) Webcam/live/keystroke = Investigate-class, dual approval ও audit সহ।<br>
+    ৩) Manager aggregates; investigator purpose-bound evidence।
+  </div>
+  <div class="meta-box">
+    <p><strong>Prepared by:</strong> Mostak Ahmad</p>
+    <p><strong>Version:</strong> ৩.০ · সেপ্টেম্বর ২০২৬ · Requirement Catalog ৬০৩</p>
+    <p class="small">বিস্তারিত ID: Veriato Feature Crosswalk &amp; Plan Upgrade v1.3 এবং MRS v1.3 Catalog।</p>
+  </div>
+</section>
+
+</body>
+</html>
