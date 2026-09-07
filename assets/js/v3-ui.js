@@ -19,7 +19,7 @@
   }
 
   function head(title, sub, actions = '') {
-    return `<div class="d-flex justify-content-between align-items-start gap-3 mb-4"><div><h2 class="page-title mb-1">${esc(title)}</h2><div class="page-subtitle">${esc(sub)}</div></div><div class="d-flex flex-wrap gap-2">${actions}</div></div>`;
+    return `<div class="page-head d-flex justify-content-between align-items-start gap-3 mb-4"><div class="min-w-0"><h2 class="page-title mb-1">${esc(title)}</h2><div class="page-subtitle">${esc(sub)}</div></div><div class="page-actions d-flex flex-wrap gap-2">${actions}</div></div>`;
   }
 
   function metric(label, val, trend, icon) {
